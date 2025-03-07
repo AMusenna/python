@@ -28,7 +28,7 @@ print("✅ Decryption complete. Check:", output_file)
 from Crypto.Cipher import AES
 import base64
 
-key = base64.b64decode("OolsAwwF23cICQoLDA00De==")
+key = bytes.fromhex("3a896c030c05db7708090a0b0c0d340d")
 input_file = "Financial_Report.txt.fun"
 output_file = "Financial_Report_decrypted.txt"
 
