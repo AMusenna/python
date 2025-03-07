@@ -1,0 +1,22 @@
+from Crypto.Cipher import AES
+import base64
+
+key = base64.b64decode("OolsAwwF23cICQoLDA00De==")
+input_file = "Financial_Report.txt.fun"
+output_file = "Financial_Report_decrypted.txt"
+
+with open(input_file, 'rb') as f:
+    iv = f.read(16)  # İlk 16 byte IV olabilir
+    ciphertext = f.read()
+
+cipher = AES.new(key, AES.MODE_CBC, iv)
+plaintext = cipher.decrypt(ciphertext)
+
+# Padding temizliği
+pad_len = plaintext[-1]
+plaintext = plaintext[:-pad_len]
+
+with open(output_file, 'wb') as f:
+    f.write(plaintext)
+
+print("✅ Decryption complete. Check:", output_file)
